@@ -1,10 +1,12 @@
 import App from './App.svelte';
 
 const app = new App({
-	target: document.body,
-	props: {
-		name: 'world'
-	}
+
+   target: document.getElementById('app'),
+   // hydrate: true,
+   props: {
+      appName: 'Dashboard'
+   }
 });
 
 window.app = app;

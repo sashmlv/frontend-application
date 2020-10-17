@@ -72,11 +72,11 @@ module.exports = {
                from: 'index.html',
                context: path.resolve(__dirname, 'public'),
             },
-            {
-               from: '*.css',
-               context: path.resolve(__dirname, 'public'),
-               to: 'css/'
-            },
+            // {
+            //    from: '*.css',
+            //    context: path.resolve(__dirname, 'public'),
+            //    to: 'css/'
+            // },
          ]
       }),
    ],
