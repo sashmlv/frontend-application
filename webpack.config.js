@@ -2,6 +2,7 @@
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'),
    CopyPlugin = require('copy-webpack-plugin'),
+   {CleanWebpackPlugin} = require('clean-webpack-plugin'),
    path = require('path'),
    mode = process.env.NODE_ENV || 'development',
    production = mode === 'production';
@@ -9,6 +10,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'),
 module.exports = {
 
    mode,
+   devtool: production ? false: 'source-map',
    entry: {
 
       index: './src/main.js'
@@ -55,17 +57,27 @@ module.exports = {
    },
    plugins: [
 
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
 
-         filename: '[name].css'
+         filename: 'css/[name].css'
       }),
       new CopyPlugin({
 
          patterns: [
-
-            { from: 'public' },
+            {
+               from: 'node_modules/bootstrap/dist'
+            },
+            {
+               from: 'index.html',
+               context: path.resolve(__dirname, 'public'),
+            },
+            {
+               from: '*.css',
+               context: path.resolve(__dirname, 'public'),
+               to: 'css/'
+            },
          ]
       }),
    ],
-   devtool: production ? false: 'source-map'
 };
