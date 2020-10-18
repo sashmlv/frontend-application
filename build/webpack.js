@@ -4,12 +4,23 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'),
    CopyPlugin = require('copy-webpack-plugin'),
    {CleanWebpackPlugin} = require('clean-webpack-plugin'),
    path = require('path'),
-   mode = process.env.NODE_ENV || 'development',
-   production = mode === 'production';
+   dotenv = require('dotenv'),
+   NODE_ENV = process.env.NODE_ENV || 'development',
+   production = NODE_ENV === 'production';
+
+let env = dotenv.config({path: `${__dirname}/.env.client`});
+
+if (env.error) {
+
+   throw env.error;
+}
+
+env = env.parsed;
+env.NODE_ENV = NODE_ENV;
 
 module.exports = {
 
-   mode,
+   mode: production ? 'production' : 'development',
    devtool: production ? false: 'source-map',
    devServer: {
 
@@ -30,7 +41,7 @@ module.exports = {
    },
    output: {
 
-      path: __dirname + '/dist',
+      path: __dirname + '/dist/client/',
       filename: '[name].js',
       chunkFilename: '[name].[id].js'
    },
@@ -42,7 +53,7 @@ module.exports = {
                loader: 'svelte-loader',
                options: {
                   emitCss: true,
-                  // generate: 'ssr',
+                  hotReload: true,
                }
             }
          },
@@ -69,9 +80,9 @@ module.exports = {
       new CopyPlugin({
 
          patterns: [
-            // {
-            //    from: 'node_modules/bootstrap/dist'
-            // },
+            {
+               from: 'node_modules/bootstrap/dist'
+            },
             {
                from: 'index.html',
                context: path.resolve(__dirname, 'public'),
