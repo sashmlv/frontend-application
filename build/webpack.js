@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'),
    NODE_ENV = process.env.NODE_ENV || 'development',
    production = NODE_ENV === 'production';
 
-let env = dotenv.config({path: `${__dirname}/.env.client`});
+let env = dotenv.config({path: `${__dirname}/.env`});
 
 if (env.error) {
 
