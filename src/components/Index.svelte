@@ -1,11 +1,18 @@
 <script>
-   export let appName;
+  import {Router, Link, Route} from 'svelte-routing';
+  import Home from './Home.svelte';
+  import About from './About.svelte';
+  export let url = '';
+  export let appName;
 </script>
 
-<style>
-   h1 {
-      color: purple;
-   }
-</style>
-
-<h1>Index {appName}!</h1>
+<Router url='{url}'>
+  <nav>
+    <Link to='/'>Home</Link>
+    <Link to='about'>About</Link>
+  </nav>
+  <div>
+    <Route path='/'><Home appName={appName} /></Route>
+    <Route path='about'><About appName={appName} /></Route>
+  </div>
+</Router>

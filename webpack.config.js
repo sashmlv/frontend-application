@@ -11,6 +11,10 @@ module.exports = {
 
    mode,
    devtool: production ? false: 'source-map',
+   devServer: {
+
+      port: 3000
+   },
    entry: {
 
       index: './src/main.js'
@@ -38,7 +42,7 @@ module.exports = {
                loader: 'svelte-loader',
                options: {
                   emitCss: true,
-                  hotReload: true
+                  // generate: 'ssr',
                }
             }
          },
@@ -65,9 +69,9 @@ module.exports = {
       new CopyPlugin({
 
          patterns: [
-            {
-               from: 'node_modules/bootstrap/dist'
-            },
+            // {
+            //    from: 'node_modules/bootstrap/dist'
+            // },
             {
                from: 'index.html',
                context: path.resolve(__dirname, 'public'),
