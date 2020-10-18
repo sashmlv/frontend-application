@@ -5,10 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'),
    {CleanWebpackPlugin} = require('clean-webpack-plugin'),
    path = require('path'),
    dotenv = require('dotenv'),
+   ROOT = path.resolve(`${__dirname}/..`),
    NODE_ENV = process.env.NODE_ENV || 'development',
    production = NODE_ENV === 'production';
 
-let env = dotenv.config({path: `${__dirname}/.env`});
+let env = dotenv.config({path: `${ROOT}/.env`});
 
 if (env.error) {
 
@@ -41,7 +42,7 @@ module.exports = {
    },
    output: {
 
-      path: __dirname + '/dist/client/',
+      path: `${ROOT}/dist/`,
       filename: '[name].js',
       chunkFilename: '[name].[id].js'
    },
@@ -85,11 +86,11 @@ module.exports = {
             },
             {
                from: 'index.html',
-               context: path.resolve(__dirname, 'public'),
+               context: `${ROOT}/public`,
             },
             // {
             //    from: '*.css',
-            //    context: path.resolve(__dirname, 'public'),
+            //    context: `${ROOT}/public`,
             //    to: 'css/'
             // },
          ]
