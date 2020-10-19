@@ -1,1 +1,1 @@
-### The spa application.
+### The frontend application.
