@@ -42,9 +42,9 @@ module.exports = {
    },
    output: {
 
-      path: `${ROOT}/dist/`,
+      path: `${ROOT}/dist/client/`,
       filename: '[name].js',
-      chunkFilename: '[name].[id].js'
+      chunkFilename: '[name].[id].js',
    },
    module: {
       rules: [
@@ -54,7 +54,8 @@ module.exports = {
                loader: 'svelte-loader',
                options: {
                   emitCss: true,
-                  hotReload: true,
+                  hotReload: false,
+                  hydratable: true,
                }
             }
          },
@@ -87,10 +88,11 @@ module.exports = {
             {
                from: 'index.html',
                context: `${ROOT}/public`,
+               to: '../',
             },
             // {
             //    from: '*.css',
-            //    context: `${ROOT}/public`,
+            //    context: path.resolve(__dirname, 'public'),
             //    to: 'css/'
             // },
          ]
