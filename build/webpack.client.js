@@ -92,7 +92,7 @@ module.exports = {
             },
             // {
             //    from: '*.css',
-            //    context: path.resolve(__dirname, 'public'),
+            //    context: `${ROOT}/public`,
             //    to: 'css/'
             // },
          ]
