@@ -1,32 +1,45 @@
 'use strict';
 
-require('svelte/register');
-
-const express = require('express'),
-   fs = require('fs'),
-   path = require('path'),
-   util = require('util'),
+const express = require( 'express' ),
+   fs = require( 'fs' ),
+   path = require( 'path' ),
+   util = require( 'util' ),
    app = express(),
-   server = require('http').createServer(app),
-   ROOT = __dirname,
-   HOST = '0.0.0.0',
-   PORT = 3000,
-   NODE_ENV = 'production';
+   server = require( 'http' ).createServer( app ),
+   ROOT = __dirname;
 
-const index = require(`${ROOT}/dist/server/index.js`).default;
+if( ! fs.existsSync( `${ROOT}/config.js` )) {
+
+   throw new Error( 'Config not found' );
+};
+
+if( ! fs.existsSync( `${ROOT}/dist/server` )) {
+
+   throw new Error( 'Please build server application before' );
+};
+
+const {
+   HOST,
+   PORT,
+   NODE_ENV,
+} = require( `${ROOT}/config` ),
+   index = require( `${ROOT}/dist/server` ).default;
+
 // template = fs.readFileSync();
 
-app.use('/', express.static(`${ROOT}/dist/client`));
+app.use('/', express.static( `${ROOT}/dist/client` ));
 
-server.on('error', err => console.log(err));
+server.on( 'error', err => console.log( err ));
 
-(async _=> {
+( async _=> {
 
-   app.use('/', (req, res, next) => {
+   app.use( '/', ( req, res, next ) => {
 
-      const data = {appName: 'dashboard'};
+      console.log( req.url );
 
-      const {head, html, css} = index.render({url: req.url, ...data});
+      const data = { appName: 'dashboard' };
+
+      const { head, html, css, } = index.render({ url: req.url, ...data });
 
       res.send(`
 <!doctype html>

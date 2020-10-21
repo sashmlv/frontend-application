@@ -1,9 +1,11 @@
 import App from './App.svelte';
+import {SSR} from '../config.js';
+import config from '../config.js';
 
 const app = new App({
 
    target: document.getElementById('app'),
-   hydrate: true,
+   hydrate: SSR,
    props: {
       appName: 'Dashboard'
    }

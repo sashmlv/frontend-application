@@ -1,23 +1,20 @@
 'use strict';
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-   CopyPlugin = require('copy-webpack-plugin'),
-   {CleanWebpackPlugin} = require('clean-webpack-plugin'),
-   path = require('path'),
-   dotenv = require('dotenv'),
-   ROOT = path.resolve(`${__dirname}/..`),
-   NODE_ENV = process.env.NODE_ENV || 'development',
+const webpack = require( 'webpack' ),
+   MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
+   CopyPlugin = require( 'copy-webpack-plugin' ),
+   {CleanWebpackPlugin} = require( 'clean-webpack-plugin' ),
+   fs = require( 'fs' ),
+   path = require( 'path' ),
+   ROOT = path.resolve( `${__dirname}/..` );
+
+if( ! fs.existsSync( `${ROOT}/config.js` )) {
+
+   throw new Error( 'Config not found' );
+};
+
+const {NODE_ENV} = require( `${ROOT}/config` ),
    production = NODE_ENV === 'production';
-
-let env = dotenv.config({path: `${ROOT}/.env`});
-
-if (env.error) {
-
-   throw env.error;
-}
-
-env = env.parsed;
-env.NODE_ENV = NODE_ENV;
 
 module.exports = {
 
@@ -35,10 +32,10 @@ module.exports = {
 
       alias: {
 
-         svelte: path.resolve('node_modules', 'svelte')
+         svelte: path.resolve( 'node_modules', 'svelte' )
       },
-      extensions: ['.mjs', '.js', '.svelte'],
-      mainFields: ['svelte', 'browser', 'module', 'main']
+      extensions: [ '.mjs', '.js', '.svelte' ],
+      mainFields: [ 'svelte', 'browser', 'module', 'main' ]
    },
    output: {
 
@@ -52,9 +49,12 @@ module.exports = {
          {
             test: /\.svelte$/,
             use: {
+
                loader: 'svelte-loader',
                options: {
+
                   emitCss: true,
+                  hotReload: false,
                   generate: 'ssr',
                }
             }
@@ -62,11 +62,8 @@ module.exports = {
          {
             test: /\.css$/,
             use: [
-               /**
-                * MiniCssExtractPlugin doesn't support HMR.
-                * For developing, use 'style-loader' instead.
-                * */
-               production ? MiniCssExtractPlugin.loader : 'style-loader',
+
+               MiniCssExtractPlugin.loader,
                'css-loader'
             ]
          }
@@ -75,6 +72,10 @@ module.exports = {
    plugins: [
 
       new CleanWebpackPlugin(),
+      new webpack.DefinePlugin({
+
+         'process.env.SSR': JSON.stringify(process.env.SSR)
+      }),
       new MiniCssExtractPlugin({
 
          filename: 'css/[name].css'
@@ -88,6 +89,7 @@ module.exports = {
             {
                from: 'index.html',
                context: `${ROOT}/public`,
+               to: '../',
             },
             // {
             //    from: '*.css',
