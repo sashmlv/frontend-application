@@ -1,7 +1,6 @@
 'use strict';
 
-const dpv = require( 'dotenv-parse-variables' ),
-   fs = require( 'fs' ),
+const fs = require( 'fs' ),
    path = require( 'path' ),
    ROOT = path.resolve( `${__dirname}/..` ),
    webpackSpa = require( './webpack.spa' ),
