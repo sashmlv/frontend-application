@@ -7,7 +7,7 @@
    const hash = SPA ? '/#' : '';
 </script>
 
-<Router url='{url}' hash="{SPA}">
+<Router url='{url}'>
   <nav>
     <Link to="/">Home</Link>
     <Link to="{hash}/about">About</Link>
