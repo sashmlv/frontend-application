@@ -4,13 +4,13 @@
   "description": "The frontend appapplication",
   "main": "index.js",
   "scripts": {
-    "build:spa": "cross-env SPA=true webpack --config ./build/webpack",
-    "build:ssr": "cross-env SSR=true webpack --config ./build/webpack",
-    "build:ssr:server": "webpack --config ./build/webpack.ssr.server",
-    "build:ssr:client": "webpack --config ./build/webpack.ssr.client",
-    "spa": "npm run build:spa && http-server -p 3000 dist",
-    "ssr": "npm run build:ssr && node ./server",
-    "dev": "cross-env SPA=1 webpack-dev-server --content-base dist --config ./build/webpack",
+    "build:spa": "cross-env SPA=1 webpack --config ./build/webpack.js",
+    "build:ssr": "cross-env SSR=1 webpack --config ./build/webpack.js",
+    "build:ssr:server": "webpack --config ./build/webpack.ssr.server.js",
+    "build:ssr:client": "webpack --config ./build/webpack.ssr.client.js",
+    "spa": "npm run build:spa && cross-env SPA=1 node ./server.js",
+    "ssr": "npm run build:ssr && cross-env SSR=1 node ./server.js",
+    "dev": "cross-env SPA=1 webpack-dev-server --content-base dist --config ./build/webpack.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sashmlv",
@@ -20,7 +20,6 @@
     "copy-webpack-plugin": "^6.2.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
-    "http-server": "^0.12.3",
     "mini-css-extract-plugin": "^1.0.0",
     "style-loader": "^0.23.1",
     "svelte": "^3.0.0",
@@ -29,6 +28,7 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.2.0",
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {

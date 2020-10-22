@@ -1,50 +1,27 @@
 'use strict';
 
 const webpack = require( 'webpack' ),
-   MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
-   CopyPlugin = require( 'copy-webpack-plugin' ),
-   {CleanWebpackPlugin} = require( 'clean-webpack-plugin' ),
-   fs = require( 'fs' ),
+   { merge } = require( 'webpack-merge' ),
    path = require( 'path' ),
-   ROOT = path.resolve( `${__dirname}/..` );
+   webpackCommon = require( './webpack.common' ),
+   CopyPlugin = require( 'copy-webpack-plugin' ),
+   ROOT = path.resolve( `${ __dirname }/..` );
 
-if( ! fs.existsSync( `${ROOT}/config.js` )) {
+module.exports = merge( webpackCommon, {
 
-   throw new Error( 'Config not found' );
-};
-
-const {NODE_ENV} = require( `${ROOT}/config` ),
-   production = NODE_ENV === 'production';
-
-module.exports = {
-
-   mode: production ? 'production' : 'development',
-   devtool: production ? false: 'source-map',
-   devServer: {
-
-      port: 3000
-   },
    entry: {
 
       index: './src/App.svelte',
    },
-   resolve: {
-
-      alias: {
-
-         svelte: path.resolve( 'node_modules', 'svelte' )
-      },
-      extensions: [ '.mjs', '.js', '.svelte' ],
-      mainFields: [ 'svelte', 'browser', 'module', 'main' ]
-   },
    output: {
 
       libraryTarget: 'commonjs',
-      path: `${ROOT}/dist/server/`,
+      path: `${ ROOT }/dist/server/`,
       filename: '[name].js',
       chunkFilename: '[name].[id].js',
    },
    module: {
+
       rules: [
          {
             test: /\.svelte$/,
@@ -59,44 +36,23 @@ module.exports = {
                }
             }
          },
-         {
-            test: /\.css$/,
-            use: [
-
-               MiniCssExtractPlugin.loader,
-               'css-loader'
-            ]
-         }
       ]
    },
    plugins: [
 
-      new CleanWebpackPlugin(),
       new webpack.DefinePlugin({
 
-         'process.env.SSR': JSON.stringify(process.env.SSR)
-      }),
-      new MiniCssExtractPlugin({
-
-         filename: 'css/[name].css'
+         'process.env.SSR': JSON.stringify( process.env.SSR )
       }),
       new CopyPlugin({
 
          patterns: [
             {
-               from: 'node_modules/bootstrap/dist'
-            },
-            {
                from: 'index.html',
-               context: `${ROOT}/public`,
+               context: `${ ROOT }/public`,
                to: '../',
             },
-            // {
-            //    from: '*.css',
-            //    context: path.resolve(__dirname, 'public'),
-            //    to: 'css/'
-            // },
          ]
       }),
    ],
-};
+});
