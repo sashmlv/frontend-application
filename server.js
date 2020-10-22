@@ -54,12 +54,11 @@ parts = parts[ 1 ].split( '<!--HTML-->' );
 const beforeHtml = parts[ 0 ],
    afterHtml = parts[ 1 ];
 
-// app.use( '/', express.static( serve ));
-app.use( express.static( serve ));
+app.use( '/', express.static( serve ));
 
 app.get( '*', ( req, res, next ) => {
 
-   console.log( req.url, req.baseUrl );
+   console.log( req.url );
 
    if( SPA ) {
 

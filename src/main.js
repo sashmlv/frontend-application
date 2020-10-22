@@ -1,5 +1,5 @@
 import App from './App.svelte';
-import {SSR, SPA} from '../config.js';
+import {SSR} from '../config.js';
 
 const app = new App({
 
@@ -7,7 +7,6 @@ const app = new App({
    hydrate: SSR,
    props: {
       appName: 'Dashboard',
-      SPA,
    }
 });
 
