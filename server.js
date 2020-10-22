@@ -37,13 +37,15 @@ if( SSR && ! fs.existsSync( `${ROOT}/dist/server` )) {
 
 // template = fs.readFileSync();
 
-const serve = SPA ? `${ROOT}/dist` : SSR ? `${ROOT}/dist/client` : undefined;
-
 server.on( 'error', err => console.log( err ));
+
+const serve = SPA ? `${ROOT}/dist` : SSR ? `${ROOT}/dist/client` : undefined;
 
 ( async _=> {
 
-   app.use( '/', express.static( serve ), ( req, res, next ) => {
+   app.use( '/', express.static( serve ));
+
+   app.get( '*', ( req, res, next ) => {
 
       console.log( req.url );
 
@@ -58,14 +60,12 @@ server.on( 'error', err => console.log( err ));
    <title>ssr app</title>
 </head>
 <body>
-   <div id='app'>
-   </div>
+   <div id='app'></div>
    <script src='index.js'></script>
 </body>
 </html>
       `);
       }
-
       else if( SSR ) {
 
          const { head, html, css, } = index.render({ url: req.url, ...data });
