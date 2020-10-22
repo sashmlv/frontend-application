@@ -2,8 +2,8 @@
 
 module.exports = {
 
-   SPA: process.env.SPA === 'true',
-   SSR: process.env.SSR === 'true',
+   SPA: !! process.env.SPA,
+   SSR: !! process.env.SSR,
    HOST:'localhost',
    PORT: 3000,
    NODE_ENV: process.env.NODE_ENV || 'development',
