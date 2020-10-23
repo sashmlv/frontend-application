@@ -52,7 +52,8 @@ const beforeStyle = parts[ 0 ];
 parts = parts[ 1 ].split( '<!--HTML-->' );
 
 const beforeHtml = parts[ 0 ],
-   afterHtml = parts[ 1 ];
+   afterHtml = parts[ 1 ],
+   spaTemplate = `${ beforeHead }${ beforeStyle }${ beforeHtml }${ afterHtml }`;
 
 app.use( '/', express.static( serve ));
 
@@ -62,7 +63,7 @@ app.get( '*', ( req, res, next ) => {
 
    if( SPA ) {
 
-      res.send( `${ beforeHead }${ beforeStyle }${ beforeHtml }${ afterHtml }`);
+      res.send( spaTemplate );
    }
    else if( SSR ) {
 
