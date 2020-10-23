@@ -75,7 +75,7 @@ else if( SSR ){
 
       console.log( req.url );
 
-      const { head, html, css, } = index.render({ url: req.url, ...data });
+      const { head, html, css, } = index.render({ url: req.url, SPA, SSR, ...data });
 
       res.send( `${ beforeHead }${ head }${ beforeStyle }${ css && css.code ? css.code : '' }${ beforeHtml }${ html }${ afterHtml }`);
 

@@ -19,6 +19,7 @@ module.exports = merge( webpackCommon, {
       path: `${ ROOT }/dist/server/`,
       filename: '[name].js',
       chunkFilename: '[name].[id].js',
+      globalObject: 'this',
    },
    module: {
 
@@ -40,10 +41,6 @@ module.exports = merge( webpackCommon, {
    },
    plugins: [
 
-      new webpack.DefinePlugin({
-
-         'process.env.SSR': JSON.stringify( process.env.SSR )
-      }),
       new CopyPlugin({
 
          patterns: [

@@ -37,10 +37,6 @@ module.exports = merge( webpackCommon, {
    },
    plugins: [
 
-      new webpack.DefinePlugin({
-
-         'process.env.SPA': JSON.stringify( process.env.SPA )
-      }),
       new CopyPlugin({
 
          patterns: [

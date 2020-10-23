@@ -1,13 +1,16 @@
 import App from './App.svelte';
-import {SSR} from '../config.js';
+import {SSR, SPA} from '../config.js';
 
 const app = new App({
 
-   target: document.getElementById('app'),
+   target: document.getElementById( 'app' ),
    hydrate: SSR,
    props: {
+      url: window.location.pathname,
       appName: 'Dashboard',
-   }
+      SPA,
+      SSR,
+   },
 });
 
 window.app = app;

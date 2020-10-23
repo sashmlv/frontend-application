@@ -48,6 +48,11 @@ module.exports = {
    plugins: [
 
       new CleanWebpackPlugin(),
+      new webpack.DefinePlugin({
+
+         'process.env.SPA': JSON.stringify( process.env.SPA ),
+         'process.env.SSR': JSON.stringify( process.env.SSR )
+      }),
       new MiniCssExtractPlugin({
 
          filename: 'css/[name].css'
