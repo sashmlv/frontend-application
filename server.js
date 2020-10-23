@@ -8,7 +8,7 @@ const express = require( 'express' ),
    server = require( 'http' ).createServer( app ),
    ROOT = __dirname;
 
-if( ! fs.existsSync( `${ ROOT }/config.js` )) {
+if( ! fs.existsSync( `${ ROOT }/config.js` )){
 
    throw new Error( 'Config not found' );
 };
@@ -23,14 +23,14 @@ const {
 
 const data = { appName: 'dashboard' };
 
-if( SSR && SPA || ! SSR && ! SPA ) {
+if( SSR && SPA || ! SSR && ! SPA ){
 
    throw new Error( 'Please set config parameter for buld SPA or SSR' );
 };
 
 const index = SSR ? require( `${ ROOT }/dist/server` ).default : undefined;
 
-if( SSR && ! fs.existsSync( `${ ROOT }/dist/server` )) {
+if( SSR && ! fs.existsSync( `${ ROOT }/dist/server` )){
 
    throw new Error( 'Please build server application before' );
 };
@@ -52,28 +52,36 @@ const beforeStyle = parts[ 0 ];
 parts = parts[ 1 ].split( '<!--HTML-->' );
 
 const beforeHtml = parts[ 0 ],
-   afterHtml = parts[ 1 ],
-   spaTemplate = `${ beforeHead }${ beforeStyle }${ beforeHtml }${ afterHtml }`;
+   afterHtml = parts[ 1 ];
 
 app.use( '/', express.static( serve ));
 
-app.get( '*', ( req, res, next ) => {
+if( SPA ){
 
-   console.log( req.url );
+   const spaTemplate = `${ beforeHead }${ beforeStyle }${ beforeHtml }${ afterHtml }`;
 
-   if( SPA ) {
+   app.get( '*', ( req, res, next ) => {
+
+      console.log( req.url );
 
       res.send( spaTemplate );
-   }
-   else if( SSR ) {
+
+      return next();
+   });
+}
+else if( SSR ){
+
+   app.get( '*', ( req, res, next ) => {
+
+      console.log( req.url );
 
       const { head, html, css, } = index.render({ url: req.url, ...data });
 
       res.send( `${ beforeHead }${ head }${ beforeStyle }${ css && css.code ? css.code : '' }${ beforeHtml }${ html }${ afterHtml }`);
-   }
 
-   return next();
-});
+      return next();
+   });
+};
 
 server.listen(
    PORT,
