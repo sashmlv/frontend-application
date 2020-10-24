@@ -1,9 +1,9 @@
 'use strict';
 
 const webpack = require( 'webpack' ),
-   MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
    fs = require( 'fs' ),
    path = require( 'path' ),
+   MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
    ROOT = path.resolve( `${ __dirname }/..` );
 
 if( ! fs.existsSync( `${ ROOT }/config.js` )) {

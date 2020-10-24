@@ -32,9 +32,10 @@ module.exports = merge( webpackCommon, {
                loader: 'svelte-loader',
                options: {
 
-                  emitCss: true,
-                  hotReload: false,
                   generate: 'ssr',
+                  hotReload: false,
+                  emitCss: false,
+                  css: false,
                }
             }
          },

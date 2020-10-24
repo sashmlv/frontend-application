@@ -31,7 +31,8 @@ module.exports = merge( webpackCommon, {
                options: {
 
                   emitCss: true,
-                  hotReload: true,
+                  hotReload: false,
+                  css: false,
                }
             }
          },

@@ -2,7 +2,7 @@
    import { onMount } from 'svelte';
    import Home from './components/home';
    import About from './components/about';
-   import page from './lib/page';
+   import page from './libs/page';
 
    export let appName, spa, ssr;
 
