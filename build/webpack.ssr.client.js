@@ -4,6 +4,7 @@ const webpack = require( 'webpack' ),
    { merge } = require( 'webpack-merge' ),
    webpackCommon = require( './webpack.common' ),
    path = require( 'path' ),
+   RemovePlugin = require( 'remove-files-webpack-plugin' ),
    CopyPlugin = require( 'copy-webpack-plugin' ),
    ROOT = path.resolve( `${ __dirname }/..` );
 
@@ -38,6 +39,26 @@ module.exports = merge( webpackCommon, {
    },
    plugins: [
 
+      new RemovePlugin({
+
+         before: {
+
+            root: `${ ROOT }/dist/client`,
+            log: true,
+            test: [
+               {
+                  folder: '.',
+                  method: _=> true,
+                  recursive: true,
+               }
+            ],
+            exclude: [
+
+               `${ ROOT }/dist/client/index.html`,
+               `${ ROOT }/dist/client/favicon.ico`,
+            ],
+         },
+      }),
       new CopyPlugin({
 
          patterns: [

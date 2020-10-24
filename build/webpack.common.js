@@ -3,7 +3,6 @@
 const webpack = require( 'webpack' ),
    MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
    CopyPlugin = require( 'copy-webpack-plugin' ),
-   { CleanWebpackPlugin } = require( 'clean-webpack-plugin' ),
    fs = require( 'fs' ),
    path = require( 'path' ),
    ROOT = path.resolve( `${ __dirname }/..` );
@@ -47,10 +46,6 @@ module.exports = {
    },
    plugins: [
 
-      new CleanWebpackPlugin({
-
-         verbose: true,
-      }),
       new webpack.DefinePlugin({
 
          'process.env.SPA': JSON.stringify( process.env.SPA ),

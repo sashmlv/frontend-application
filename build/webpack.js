@@ -14,9 +14,11 @@ if( SSR && SPA || !SSR && !SPA ) {
    throw new Error( 'Please set config parameter for buld SPA or SSR' );
 };
 
-module.exports = [
+const webpackConfig = [
 
    ...( SPA ? [ webpackSpa ] : []),
    ...( SSR ? [ webpackSsrServer ] : []),
    ...( SSR ? [ webpackSsrClient ] : []),
 ];
+
+module.exports = webpackConfig;
