@@ -1,11 +1,6 @@
 'use strict';
 
-const express = require( 'express' ),
-   fs = require( 'fs' ),
-   path = require( 'path' ),
-   util = require( 'util' ),
-   app = express(),
-   server = require( 'http' ).createServer( app ),
+const fs = require( 'fs' ),
    ROOT = __dirname;
 
 if( ! fs.existsSync( `${ ROOT }/config.js` )){
@@ -20,9 +15,13 @@ const {
    NODE_ENV,
    SPA,
    SSR,
-} = require( `${ ROOT }/config` );
-
-const data = { appName: 'dashboard' };
+} = require( `${ ROOT }/config` ),
+   path = require( 'path' ),
+   util = require( 'util' ),
+   express = require( 'express' ),
+   app = express(),
+   server = require( 'http' ).createServer( app ),
+   data = { appName: 'dashboard' };
 
 if( SSR && SPA || ! SSR && ! SPA ){
 
