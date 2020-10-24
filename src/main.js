@@ -6,10 +6,9 @@ const app = new App({
    target: document.getElementById( 'app' ),
    hydrate: SSR,
    props: {
-      url: window.location.pathname,
-      appName: 'Dashboard',
-      SPA,
-      SSR,
+      appName: 'dashboard',
+      spa: SPA,
+      ssr: SSR,
    },
 });
 

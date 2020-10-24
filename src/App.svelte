@@ -2,34 +2,19 @@
    import { onMount } from 'svelte';
    import Home from './components/home';
    import About from './components/about';
+   import page from './lib/page';
 
-   export let url;
-   export let appName;
-   export let SPA;
-   export let SSR;
+   export let appName, spa, ssr;
 
-   let page, current;
+   let router, current;
 
-   if( SPA ){
+   onMount( async _=> {
 
-      onMount( async _=> {
-
-         page = ( await import( 'page' )).default;
-         initRouter();
-      });
-   }
-   else if( SSR ){
-
-      page = ( path, callback ) => ( url === path && callback());
-      initRouter();
-   };
-
-   function initRouter() {
-
-      page('/', _=> ( current = Home ))
-      page('/about', _=> ( current = About ))
-      page.start && page.start({ hashbang: SPA });
-   };
+      router = await page({ spa, ssr });
+      router('/', _=> ( current = Home ))
+      router('/about', _=> ( current = About ))
+      router.start && router.start({ hashbang: spa });
+   });
 </script>
 
 <nav>
