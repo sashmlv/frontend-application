@@ -14,6 +14,7 @@ if( ! fs.existsSync( `${ ROOT }/config.js` )){
 };
 
 const {
+
    HOST,
    PORT,
    NODE_ENV,
@@ -84,6 +85,7 @@ else if( SSR ){
 };
 
 server.listen(
+
    PORT,
    HOST,
    _=> console.log( `Server listen at: ${ HOST }:${ PORT }, NODE_ENV: ${ NODE_ENV }`),

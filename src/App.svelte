@@ -1,7 +1,7 @@
 <script>
    import { onMount } from 'svelte';
-   import Home from './components/Home.svelte';
-   import About from './components/About.svelte';
+   import Home from './components/home';
+   import About from './components/about';
 
    export let url;
    export let appName;
@@ -21,7 +21,6 @@
    else if( SSR ){
 
       page = ( path, callback ) => ( url === path && callback());
-      page.start = _=>_;
       initRouter();
    };
 
@@ -29,7 +28,7 @@
 
       page('/', _=> ( current = Home ))
       page('/about', _=> ( current = About ))
-      page.start({ hashbang: SPA });
+      page.start && page.start({ hashbang: SPA });
    };
 </script>
 

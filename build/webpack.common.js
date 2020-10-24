@@ -47,7 +47,10 @@ module.exports = {
    },
    plugins: [
 
-      new CleanWebpackPlugin(),
+      new CleanWebpackPlugin({
+
+         verbose: true,
+      }),
       new webpack.DefinePlugin({
 
          'process.env.SPA': JSON.stringify( process.env.SPA ),
