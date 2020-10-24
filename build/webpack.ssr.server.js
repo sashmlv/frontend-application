@@ -57,8 +57,7 @@ module.exports = merge( webpackCommon, {
             ],
             exclude: [
 
-               `${ ROOT }/dist/index.html`,
-               `${ ROOT }/dist/favicon.ico`,
+               `${ ROOT }/dist/server/index.html`,
             ],
          },
       }),
@@ -66,9 +65,11 @@ module.exports = merge( webpackCommon, {
 
          patterns: [
             {
-               from: './',
+               /*
+                * we need only template for render, the rest assets will served from client build
+                */
+               from: './index.html',
                context: `${ ROOT }/public`,
-               to: '../',
             },
          ]
       }),

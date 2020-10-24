@@ -2,7 +2,6 @@
 
 const webpack = require( 'webpack' ),
    MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
-   CopyPlugin = require( 'copy-webpack-plugin' ),
    fs = require( 'fs' ),
    path = require( 'path' ),
    ROOT = path.resolve( `${ __dirname }/..` );
@@ -54,19 +53,6 @@ module.exports = {
       new MiniCssExtractPlugin({
 
          filename: 'css/[name].css'
-      }),
-      new CopyPlugin({
-
-         patterns: [
-            {
-               from: 'node_modules/bootstrap/dist'
-            },
-            // {
-            //    from: '*.css',
-            //    context: `${ROOT}/public`,
-            //    to: 'css/'
-            // },
-         ]
       }),
    ],
 };

@@ -37,39 +37,28 @@ if( SSR && ! fs.existsSync( `${ ROOT }/dist/server` )){
 
 server.on( 'error', err => console.log( err ));
 
-const serve = SPA ? `${ ROOT }/dist` : SSR ? `${ ROOT }/dist/client` : undefined,
-   templateStr = fs.readFileSync( `${ ROOT }/dist/index.html`, 'utf8' );
-
-/* get template parts */
-let parts = templateStr.split( '<!--HEAD-->' );
-
-const beforeHead = parts[ 0 ];
-
-parts = parts[ 1 ].split( '<!--STYLE-->' );
-
-const beforeStyle = parts[ 0 ];
-
-parts = parts[ 1 ].split( '<!--HTML-->' );
-
-const beforeHtml = parts[ 0 ],
-   afterHtml = parts[ 1 ];
+const serve = SPA ? `${ ROOT }/dist` : SSR ? `${ ROOT }/dist/client` : undefined;
 
 app.use( '/', express.static( serve ));
 
-if( SPA ){
+if( SSR ){
 
-   const spaTemplate = `${ beforeHead }${ beforeStyle }${ beforeHtml }${ afterHtml }`;
+   const templatePath = SPA ? `${ ROOT }/dist/index.html` : SSR ? `${ ROOT }/dist/server/index.html` : undefined,
+      templateStr = fs.readFileSync( templatePath, 'utf8' );
 
-   app.get( '*', ( req, res, next ) => {
+   /* get template parts */
+   let parts = templateStr.split( '<!--HEAD-->' );
 
-      console.log( req.url );
+   const beforeHead = parts[ 0 ];
 
-      res.send( spaTemplate );
+   parts = parts[ 1 ].split( '<!--STYLE-->' );
 
-      return next();
-   });
-}
-else if( SSR ){
+   const beforeStyle = parts[ 0 ];
+
+   parts = parts[ 1 ].split( '<!--HTML-->' );
+
+   const beforeHtml = parts[ 0 ],
+      afterHtml = parts[ 1 ];
 
    app.get( '*', ( req, res, next ) => {
 

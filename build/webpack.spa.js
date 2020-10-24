@@ -21,6 +21,7 @@ module.exports = merge( webpackCommon, {
       chunkFilename: '[name].[id].js',
    },
    module: {
+
       rules: [
          {
             test: /\.svelte$/,
@@ -64,6 +65,9 @@ module.exports = merge( webpackCommon, {
             {
                from: './',
                context: `${ ROOT }/public`,
+            },
+            {
+               from: 'node_modules/bootstrap/dist'
             },
          ]
       }),

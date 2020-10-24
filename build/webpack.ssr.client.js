@@ -54,7 +54,6 @@ module.exports = merge( webpackCommon, {
             ],
             exclude: [
 
-               `${ ROOT }/dist/client/index.html`,
                `${ ROOT }/dist/client/favicon.ico`,
             ],
          },
@@ -65,6 +64,18 @@ module.exports = merge( webpackCommon, {
             {
                from: './',
                context: `${ ROOT }/public`,
+               globOptions: {
+
+                  /*
+                   * for SSR we have dynamic template, not client index.html file,
+                   * so we will make requests to the server each time,
+                   * ( express route will give response to us each time )
+                   */
+                  ignore: [ '**/index.html' ],
+               },
+            },
+            {
+               from: 'node_modules/bootstrap/dist'
             },
          ]
       }),
