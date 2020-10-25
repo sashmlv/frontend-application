@@ -46,6 +46,8 @@ if( SPA ){
 
    app.get( '*', ( req, res, next ) => {
 
+      console.log( req.url );
+
       res.send( templateStr );
    });
 }
