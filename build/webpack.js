@@ -2,6 +2,7 @@
 
 const fs = require( 'fs' ),
    path = require( 'path' ),
+   { greenBright, redBright, underline } = require( 'chalk' ),
    ROOT = path.resolve( `${ __dirname }/..` ),
    webpackSpa = require( './webpack.spa' ),
    webpackSsrServer = require( './webpack.ssr.server' ),
@@ -11,8 +12,11 @@ const { SPA, SSR } = require( `${ ROOT }/config` );
 
 if( SSR && SPA || !SSR && !SPA ) {
 
-   throw new Error( 'Please set config parameter for buld SPA or SSR' );
+   throw new Error( redBright('Please set config parameter for buld SPA or SSR' ));
 };
+
+SPA && console.log( greenBright.underline( 'Building SPA' ));
+SSR && console.log( greenBright.underline( 'Building SSR' ));
 
 const webpackConfig = [
 
