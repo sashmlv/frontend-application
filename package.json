@@ -32,6 +32,8 @@
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
-    "bootstrap": "^5.0.0-alpha2"
+    "bootstrap": "^5.0.0-alpha2",
+    "express-pino-logger": "^5.0.0",
+    "pino": "^6.7.0"
   }
 }

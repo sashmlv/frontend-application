@@ -21,9 +21,11 @@ const {
    express = require( 'express' ),
    app = express(),
    server = require( 'http' ).createServer( app ),
+   log = require( 'pino' )(),
+   pino = require('express-pino-logger')(),
    data = { appName: 'dashboard' };
 
-server.on( 'error', err => console.log( err ));
+server.on( 'error', err => log.error( err ));
 
 if( SSR && SPA || ! SSR && ! SPA ){
 
@@ -40,13 +42,12 @@ const index = SSR ? require( `${ ROOT }/dist/server` ).default : undefined,
    templatePath = SPA ? `${ ROOT }/dist/index.html` : SSR ? `${ ROOT }/dist/server/index.html` : undefined,
    templateStr = fs.readFileSync( templatePath, 'utf8' );
 
+app.use( pino );
 app.use( '/', express.static( serve ));
 
 if( SPA ){
 
    app.get( '*', ( req, res, next ) => {
-
-      console.log( req.url );
 
       res.send( templateStr );
    });
@@ -69,8 +70,6 @@ else if( SSR ){
 
    app.get( '*', ( req, res, next ) => {
 
-      console.log( req.url );
-
       const { head, html, css, } = index.render({
 
          url: req.url,
@@ -87,7 +86,7 @@ else if( SSR ){
 
 app.use(( err, req, res, next ) => {
 
-   console.log( err );
+   log.error( err );
 
    if( res.headersSent ) {
 
@@ -101,5 +100,5 @@ server.listen(
 
    PORT,
    HOST,
-   _=> console.log( `Server listen at: ${ HOST }:${ PORT }, NODE_ENV: ${ NODE_ENV }`),
+   _=> log.info( `Server listen at: ${ HOST }:${ PORT }, NODE_ENV: ${ NODE_ENV }`),
 );
