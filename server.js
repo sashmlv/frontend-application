@@ -41,10 +41,17 @@ const serve = SPA ? `${ ROOT }/dist` : SSR ? `${ ROOT }/dist/client` : undefined
 
 app.use( '/', express.static( serve ));
 
-if( SSR ){
+const templatePath = SPA ? `${ ROOT }/dist/index.html` : SSR ? `${ ROOT }/dist/server/index.html` : undefined,
+   templateStr = fs.readFileSync( templatePath, 'utf8' );
 
-   const templatePath = SPA ? `${ ROOT }/dist/index.html` : SSR ? `${ ROOT }/dist/server/index.html` : undefined,
-      templateStr = fs.readFileSync( templatePath, 'utf8' );
+if( SPA ){
+
+   app.get( '*', ( req, res, next ) => {
+
+      res.send( templateStr );
+   });
+}
+else if( SSR ){
 
    /* get template parts */
    let parts = templateStr.split( '<!--HEAD-->' );
