@@ -11,6 +11,7 @@
     "spa": "npm run build:spa && cross-env SPA=1 node ./server.js",
     "ssr": "npm run build:ssr && cross-env SSR=1 node ./server.js",
     "dev": "cross-env SPA=1 webpack-dev-server --content-base dist --config ./build/webpack.js",
+    "eslint": "node ./build/eslint.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sashmlv",
@@ -20,6 +21,9 @@
     "copy-webpack-plugin": "^6.2.1",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
+    "eslint": "^7.12.0",
+    "eslint-config-3-spaces": "git+https://github.com/sashmlv/eslint-config-3-spaces.git",
+    "eslint-plugin-svelte3": "^2.7.3",
     "mini-css-extract-plugin": "^1.0.0",
     "page": "^1.11.6",
     "remove-files-webpack-plugin": "^1.4.4",
