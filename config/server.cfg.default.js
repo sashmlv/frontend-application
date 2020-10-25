@@ -21,7 +21,7 @@ const config = {
       ],
       OPTIONS: {
 
-         extensions: [ '.js', '.svelte' ]
+         extensions: [ '.js', '.svelte', ]
       }
    }
 };

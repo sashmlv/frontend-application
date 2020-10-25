@@ -8,7 +8,7 @@ const fs = require( 'fs' ),
    webpackSsrServer = require( './webpack.ssr.server' ),
    webpackSsrClient = require( './webpack.ssr.client' );
 
-const { SPA, SSR } = require( `${ ROOT }/config` );
+const { SPA, SSR } = require( `${ ROOT }/config/server.cfg` );
 
 if( SSR && SPA || !SSR && !SPA ) {
 

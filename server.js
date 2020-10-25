@@ -3,7 +3,7 @@
 const fs = require( 'fs' ),
    ROOT = __dirname;
 
-if( ! fs.existsSync( `${ ROOT }/config.js` )){
+if( ! fs.existsSync( `${ ROOT }/config/server.cfg.js` )){
 
    throw new Error( 'Config not found' );
 };
@@ -15,7 +15,7 @@ const {
    NODE_ENV,
    SPA,
    SSR,
-} = require( `${ ROOT }/config` ),
+} = require( `${ ROOT }/config/server.cfg` ),
    path = require( 'path' ),
    util = require( 'util' ),
    express = require( 'express' ),
