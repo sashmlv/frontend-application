@@ -1,5 +1,5 @@
 import App from './App.svelte';
-import {SSR, SPA} from '../config/client.cfg';
+import { SSR, SPA } from '../config/client.cfg';
 
 const app = new App({
 

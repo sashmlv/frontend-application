@@ -11,7 +11,13 @@ if( ! fs.existsSync( `${ ROOT }/config/server.cfg.js` )) {
    throw new Error( 'Config not found' );
 };
 
-const { NODE_ENV } = require( `${ ROOT }/config/server.cfg` ),
+const {
+   SPA,
+   SSR,
+   HOST,
+   PORT,
+   NODE_ENV,
+} = require( `${ ROOT }/config/server.cfg` ),
    production = NODE_ENV === 'production';
 
 module.exports = {
@@ -20,7 +26,8 @@ module.exports = {
    devtool: production ? false: 'source-map',
    devServer: {
 
-      port: 3000
+      host: HOST,
+      port: PORT,
    },
    resolve: {
 
@@ -47,8 +54,8 @@ module.exports = {
 
       new webpack.DefinePlugin({
 
-         'process.env.SPA': JSON.stringify( process.env.SPA ),
-         'process.env.SSR': JSON.stringify( process.env.SSR )
+         'process.env.SPA': JSON.stringify( SPA ),
+         'process.env.SSR': JSON.stringify( SSR )
       }),
       new MiniCssExtractPlugin({
 
