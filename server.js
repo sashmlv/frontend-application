@@ -23,26 +23,24 @@ const {
    server = require( 'http' ).createServer( app ),
    data = { appName: 'dashboard' };
 
+server.on( 'error', err => console.log( err ));
+
 if( SSR && SPA || ! SSR && ! SPA ){
 
    throw new Error( 'Please set config parameter for buld SPA or SSR' );
 };
-
-const index = SSR ? require( `${ ROOT }/dist/server` ).default : undefined;
 
 if( SSR && ! fs.existsSync( `${ ROOT }/dist/server` )){
 
    throw new Error( 'Please build server application before' );
 };
 
-server.on( 'error', err => console.log( err ));
-
-const serve = SPA ? `${ ROOT }/dist` : SSR ? `${ ROOT }/dist/client` : undefined;
+const index = SSR ? require( `${ ROOT }/dist/server` ).default : undefined,
+   serve = SPA ? `${ ROOT }/dist` : SSR ? `${ ROOT }/dist/client` : undefined,
+   templatePath = SPA ? `${ ROOT }/dist/index.html` : SSR ? `${ ROOT }/dist/server/index.html` : undefined,
+   templateStr = fs.readFileSync( templatePath, 'utf8' );
 
 app.use( '/', express.static( serve ));
-
-const templatePath = SPA ? `${ ROOT }/dist/index.html` : SSR ? `${ ROOT }/dist/server/index.html` : undefined,
-   templateStr = fs.readFileSync( templatePath, 'utf8' );
 
 if( SPA ){
 
