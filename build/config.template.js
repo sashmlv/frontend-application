@@ -15,6 +15,7 @@ const config = {
 
       PATHS: [
 
+         path.resolve( `${ ROOT }/build/**/*` ),
          path.resolve( `${ ROOT }/src/**/*` ),
          path.resolve( `${ ROOT }/server.js` ),
       ],
