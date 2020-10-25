@@ -85,6 +85,18 @@ else if( SSR ){
    });
 };
 
+app.use(( err, req, res, next ) => {
+
+   console.log( err );
+
+   if( res.headersSent ) {
+
+      return next( err );
+   }
+
+   return res.status( 500 ).send( 'Internal Server Error' );
+});
+
 server.listen(
 
    PORT,
