@@ -64,7 +64,7 @@ module.exports = merge( webpackCommon, {
          patterns: [
             {
                from: './',
-               context: `${ ROOT }/public`,
+               context: `${ ROOT }/src/public`,
                globOptions: {
 
                   /*

@@ -65,7 +65,7 @@ module.exports = merge( webpackCommon, {
          patterns: [
             {
                from: './',
-               context: `${ ROOT }/public`,
+               context: `${ ROOT }/src/public`,
             },
             {
                from: 'node_modules/bootstrap/dist'

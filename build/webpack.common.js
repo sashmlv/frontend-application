@@ -12,6 +12,7 @@ if( ! fs.existsSync( `${ ROOT }/config/server.cfg.js` )) {
 };
 
 const {
+
    SPA,
    SSR,
    HOST,

@@ -70,7 +70,7 @@ module.exports = merge( webpackCommon, {
                 * we need only template for render, the rest assets will served from client build
                 */
                from: './index.html',
-               context: `${ ROOT }/public`,
+               context: `${ ROOT }/src/public`,
             },
          ]
       }),
