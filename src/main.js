@@ -1,5 +1,5 @@
 import App from './App.svelte';
-import { SSR, SPA } from '../config/client.cfg';
+import { SSR, SPA, SPA_HASHBANG } from '../config/client.cfg';
 
 const app = new App({
 
@@ -8,6 +8,7 @@ const app = new App({
    props: {
       appName: 'dashboard',
       spa: SPA,
+      spaHashbang: SPA_HASHBANG,
       ssr: SSR,
    },
 });

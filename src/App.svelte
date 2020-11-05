@@ -1,28 +1,30 @@
 <script>
    import { onMount } from 'svelte';
    import Home from './components/home';
+   import Menu from './components/menu';
    import Signin from './components/signin';
    import About from './components/about';
    import page from './libs/page';
 
-   export let appName, spa, ssr;
+   export let appName, spa, spaHashbang, ssr;
 
-   let router, current;
+   let router, component, props = {};
 
    onMount( async _=> {
 
       router = await page({ spa, ssr });
-      router('/', _=> ( current = Home ))
-      router('/signin', _=> ( current = Signin ))
-      router('/about', _=> ( current = About ))
-      router.start && router.start({ hashbang: spa });
+      router(( ctx, next ) => {
+         props.appName = appName;
+         props.pathname = spa ? ctx.path : window.location.pathname;
+         return next();
+      });
+      router( '/', _=> ( component = Home ));
+      router( '/signin', _=> ( component = Signin ));
+      router( '/about', _=> ( component = About ));
+      router.start && router.start({ hashbang: spa && spaHashbang });
    });
 </script>
 
-<nav>
-   <a href='/'>Home</a>
-   <a href='/signin'>Signin</a>
-   <a href='/about'>About</a>
-</nav>
+<Menu {...props}/>
 
-<svelte:component this='{current}' appName='{appName}' />
+<svelte:component this='{component}' {...props}/>

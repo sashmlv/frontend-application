@@ -3,9 +3,12 @@
 </script>
 
 <style>
-   h1 {
-      color: #3CAEA3;
-   }
 </style>
 
-<h1>About {appName}!</h1>
+<div class='container'>
+   <div class='row'>
+      <div class='col-md-4 mx-auto text-center p-5'>
+         <p class='h4 mb-4' style='color: #3CAEA3;'>About {appName}!</p>
+      </div>
+   </div>
+</div>

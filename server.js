@@ -14,6 +14,7 @@ const {
    PORT,
    NODE_ENV,
    SPA,
+   SPA_HASHBANG,
    SSR,
 } = require( `${ ROOT }/config/server.cfg` ),
    path = require( 'path' ),
@@ -74,6 +75,7 @@ else if( SSR ){
 
          url: req.url,
          spa: SPA,
+         spaHashbang: SPA_HASHBANG,
          ssr: SSR,
          ...data
       });
