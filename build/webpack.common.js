@@ -29,10 +29,8 @@ module.exports = {
 
       host: HOST,
       port: PORT,
-      historyApiFallback: {
-
-         index: `/server/`,
-      },
+      // writeToDisk: true,
+      historyApiFallback: SPA ? true : { index: `/server/`, },
    },
    resolve: {
 
