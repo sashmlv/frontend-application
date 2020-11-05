@@ -29,7 +29,6 @@ module.exports = {
 
       host: HOST,
       port: PORT,
-      writeToDisk: true,
       historyApiFallback: {
 
          index: `/server/`,

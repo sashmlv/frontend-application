@@ -4,14 +4,15 @@
 <style>
 </style>
 
-<form>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class='container'>
+   <div class='row'>
+      <div class='col-md-4 mx-auto'>
+         <form class='text-center border p-5' action='#!'>
+            <p class='h4 mb-4'>Sign in</p>
+            <input type='text' id='password' class='form-control mb-4' placeholder='Name'>
+            <input type='email' id='email' class='form-control mb-4' placeholder='E-mail'>
+            <button class='btn btn-primary btn-block' type='submit'>Submit</button>
+         </form>
+      </div>
+   </div>
+</div>
