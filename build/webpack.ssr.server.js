@@ -21,6 +21,7 @@ module.exports = merge( webpackCommon, {
       filename: '[name].js',
       chunkFilename: '[name].[id].js',
       globalObject: 'this',
+      publicPath: '/server/',
    },
    module: {
 

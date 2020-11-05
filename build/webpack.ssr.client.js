@@ -19,6 +19,7 @@ module.exports = merge( webpackCommon, {
       path: `${ ROOT }/dist/client/`,
       filename: '[name].js',
       chunkFilename: '[name].[id].js',
+      publicPath: '/',
    },
    module: {
       rules: [

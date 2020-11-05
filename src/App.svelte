@@ -1,6 +1,7 @@
 <script>
    import { onMount } from 'svelte';
    import Home from './components/home';
+   import Signin from './components/signin';
    import About from './components/about';
    import page from './libs/page';
 
@@ -12,6 +13,7 @@
 
       router = await page({ spa, ssr });
       router('/', _=> ( current = Home ))
+      router('/signin', _=> ( current = Signin ))
       router('/about', _=> ( current = About ))
       router.start && router.start({ hashbang: spa });
    });
@@ -19,6 +21,7 @@
 
 <nav>
    <a href='/'>Home</a>
+   <a href='/signin'>Signin</a>
    <a href='/about'>About</a>
 </nav>
 
