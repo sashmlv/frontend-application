@@ -1,8 +1,6 @@
 <script>
 
-   import { read } from '../../stores';
-
-   const appName = read( 'appName' );
+   import { appName } from '../../stores';
 
 </script>
 

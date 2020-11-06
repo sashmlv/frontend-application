@@ -4,22 +4,26 @@
    import Menu from './components/menu';
    import Signin from './components/signin';
    import About from './components/about';
-   import router from './libs/router';
-   import { read, path } from './stores';
+   import Router from './libs/router';
+   import { spa, ssr, spaHashbang, path, } from './stores';
 
-   let component,
-      spa = read( 'spa' ),
-      spaHashbang = read( 'spaHashbang' );
+   export let pathname; // server side var
 
-      router( '*', ( ctx, next) => ( path.set( ctx.path ), next()));
-      router( '/', _=> ( component = Home ));
-      router( '/signin', _=> ( component = Signin ));
-      router( '/about', _=> ( component = About ));
+   let component, router = Router({spa, ssr, pathname});
 
-      if( spa ) {
+   router( '*', ( ctx, next) => {
 
-         router.start({ hashbang: spa && spaHashbang });
-      }
+      path.set( ctx.path );
+      next && next();
+   });
+   router( '/',  _=> ( component = Home ));
+   router( '/signin', _=> ( component = Signin ));
+   router( '/about', _=> ( component = About ));
+
+   if( spa ) {
+
+      router.start({ hashbang: spa && spaHashbang });
+   }
 
 </script>
 

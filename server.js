@@ -70,7 +70,10 @@ else if( SSR ){
 
    app.get( '*', ( req, res, next ) => {
 
-      const { head, html, css, } = index.render();
+      const { head, html, css, } = index.render({
+
+         pathname: req.url,
+      });
 
       res.send( `${ beforeHead }${ head }${ beforeStyle }${ css && css.code ? css.code : '' }${ beforeHtml }${ html }${ afterHtml }`);
 

@@ -3,11 +3,11 @@
    import { onDestroy } from 'svelte';
    import { path } from '../../stores';
 
-   let pathVal;
+   let pathname;
 
    const unsubscribe = path.subscribe( val => {
 
-      pathVal = val;
+      pathname = val;
    });
 
    onDestroy( unsubscribe );
@@ -25,13 +25,13 @@
                <div class='collapse navbar-collapse justify-content-md-center'>
                   <ul class='navbar-nav'>
                      <li class='nav-item active'>
-                        <a href='/' class='nav-link {pathVal === "/" ? "active" : ""}'>Home</a>
+                        <a href='/' class='nav-link {pathname === "/" ? "active" : ""}'>Home</a>
                      </li>
                      <li class='nav-item'>
-                        <a href='/signin' class='nav-link {pathVal === "/signin" ? "active" : ""}'>Signin</a>
+                        <a href='/signin' class='nav-link {pathname === "/signin" ? "active" : ""}'>Signin</a>
                      </li>
                      <li class='nav-item'>
-                        <a href='/about' class='nav-link {pathVal === "/about" ? "active" : ""}'>About</a>
+                        <a href='/about' class='nav-link {pathname === "/about" ? "active" : ""}'>About</a>
                      </li>
                   </ul>
                </div>
