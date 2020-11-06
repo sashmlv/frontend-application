@@ -23,8 +23,7 @@ const {
    app = express(),
    server = require( 'http' ).createServer( app ),
    log = require( 'pino' )(),
-   pino = require('express-pino-logger')(),
-   data = { appName: 'dashboard' };
+   pino = require('express-pino-logger')();
 
 server.on( 'error', err => log.error( err ));
 
@@ -71,14 +70,7 @@ else if( SSR ){
 
    app.get( '*', ( req, res, next ) => {
 
-      const { head, html, css, } = index.render({
-
-         url: req.url,
-         spa: SPA,
-         spaHashbang: SPA_HASHBANG,
-         ssr: SSR,
-         ...data
-      });
+      const { head, html, css, } = index.render();
 
       res.send( `${ beforeHead }${ head }${ beforeStyle }${ css && css.code ? css.code : '' }${ beforeHtml }${ html }${ afterHtml }`);
 

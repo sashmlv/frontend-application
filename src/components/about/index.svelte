@@ -1,5 +1,9 @@
 <script>
-   export let appName;
+
+   import { read } from '../../stores';
+
+   const appName = read( 'appName' );
+
 </script>
 
 <style>

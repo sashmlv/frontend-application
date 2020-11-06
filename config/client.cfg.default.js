@@ -3,7 +3,7 @@
 const config = {
 
    SPA: !! process.env.SPA,
-   SPA_HASHBANG: !! process.env.SPA_HASHBANG,
+   SPA_HASHBANG: true,
    SSR: !! process.env.SSR,
 };
 
