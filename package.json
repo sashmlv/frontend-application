@@ -38,6 +38,8 @@
   },
   "dependencies": {
     "bootstrap": "^5.0.0-alpha2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "express-pino-logger": "^5.0.0",
     "pino": "^6.7.0"
   }
