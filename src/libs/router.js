@@ -5,10 +5,10 @@ import page from 'page';
  * @param {object} data
  * @param {boolean} data.spa
  * @param {boolean} data.ssr
- * @param {string} data.pathname - from server side, see App.svelte
+ * @param {string} data.pathname - url from server side, see App.svelte
  * @return {function} Return router
  **/
-function Router({ spa, ssr, pathname }) {
+function Router({ spa, ssr, pathname }){
 
    if( spa ){
 
@@ -27,12 +27,13 @@ function Router({ spa, ssr, pathname }) {
        **/
       return function router( path, callback ){
 
-         const match = '*' === path ||
-            path === ( pathname || window.location.pathname );
+         pathname = pathname || window.location.pathname;
+
+         const match = path === pathname || path === '*';
 
          if( match ){
 
-            callback({ path: ( pathname || window.location.pathname )}); // pass path like in page.js -> ctx.path
+            callback({ path: pathname }); // pass path like in page.js -> ctx.path, see App.svelte
          }
       };
    }

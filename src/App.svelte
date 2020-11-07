@@ -7,11 +7,11 @@
    import Router from './libs/router';
    import { spa, ssr, spaHashbang, path, } from './stores';
 
-   export let pathname; // server side var
+   export let pathname; // from server side var
 
    let component, router = Router({spa, ssr, pathname});
 
-   router( '*', ( ctx, next) => {
+   router( '*', ( ctx, next ) => {
 
       path.set( ctx.path );
       next && next();

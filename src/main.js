@@ -1,10 +1,10 @@
 import App from './App.svelte';
-import { SSR } from '../config/client.cfg';
+import { ssr } from './stores';
 
 const app = new App({
 
    target: document.getElementById( 'app' ),
-   hydrate: SSR,
+   hydrate: ssr,
 });
 
 window.app = app;
