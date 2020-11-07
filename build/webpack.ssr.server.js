@@ -48,19 +48,22 @@ module.exports = merge( webpackCommon, {
 
          before: {
 
-            root: `${ ROOT }/dist/server`,
+            root: `${ ROOT }/dist`,
             log: true,
-            test: [
-               {
-                  folder: '.',
-                  method: _=> true,
-                  recursive: true,
-               }
-            ],
-            exclude: [
+            test: [{
 
-               `${ ROOT }/dist/server/index.html`,
-            ],
+               folder: '.',
+               recursive: true,
+               method: path => {
+
+                  const result = /\/dist\/client\/?/.test( path ) ? false :
+                     /\/dist\/server$/.test( path ) ? false :
+                     /\/dist\/server\/index\.html$/.test( path ) ? false :
+                     true;
+
+                  return result;
+               },
+            }],
          },
       }),
       new CopyPlugin({
