@@ -4,3 +4,5 @@
 .editorconfig
 config/client.cfg.js
 config/server.cfg.js
+api/db.js
+api/config.js
