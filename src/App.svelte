@@ -16,9 +16,9 @@
       path.set( ctx.path );
       next && next();
    });
-   router( '/',  _=> ( component = Home ));
-   router( '/signin', _=> ( component = Signin ));
-   router( '/about', _=> ( component = About ));
+   router( '/',  () => ( component = Home ));
+   router( '/signin', () => ( component = Signin ));
+   router( '/about', () => ( component = About ));
 
    if( spa ) {
 

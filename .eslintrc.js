@@ -2,10 +2,14 @@
 
 module.exports = {
 
-   extends: 'eslint-config-3-spaces',
+   extends: [
+
+      'plugin:sonarjs/recommended',
+      'eslint-config-3-spaces',
+   ],
    parserOptions: {
 
-      ecmaVersion: 2019,
+      ecmaVersion: 12,
       sourceType: 'module',
    },
    env: {
@@ -16,6 +20,7 @@ module.exports = {
    plugins: [
 
       'svelte3',
+      'sonarjs',
    ],
    overrides: [
       {
@@ -23,4 +28,5 @@ module.exports = {
          processor: 'svelte3/svelte3',
       }
    ],
+   ignorePatterns: [ 'public' ],
 };

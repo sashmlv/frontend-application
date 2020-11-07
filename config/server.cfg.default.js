@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require( 'path' ),
-   ROOT = __dirname;
+   ROOT = path.resolve(`${ __dirname }/..`);
 
 const config = {
 
@@ -15,9 +15,9 @@ const config = {
 
       PATHS: [
 
-         path.resolve( `${ ROOT }/build/**/*` ),
-         path.resolve( `${ ROOT }/src/**/*` ),
+         path.resolve( `${ ROOT }/build` ),
          path.resolve( `${ ROOT }/server.js` ),
+         path.resolve( `${ ROOT }/src` ),
       ],
       OPTIONS: {
 
