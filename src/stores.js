@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store';
-import { APP_NAME, SPA, SPA_HASHBANG, SSR } from '../config/client.cfg';
+import { APP_NAME, SPA, SPA_HASHBANG, SSR } from '../config/client.config';
 
 const store = {
 

@@ -5,7 +5,7 @@ const {
    ROOT,
    HOST,
    PORT,
-} = require( './config' ),
+} = require( './api.config' ),
    jsonServer = require( 'json-server' ),
    server = jsonServer.create(),
    middlewares = jsonServer.defaults(),

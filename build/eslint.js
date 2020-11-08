@@ -1,7 +1,7 @@
 'use strict';
 
 const { ESLint } = require( 'eslint' ),
-   { ESLINT } = require( '../config/server.cfg' );
+   { ESLINT } = require( '../config/server.config' );
 
 (async _=> {
 

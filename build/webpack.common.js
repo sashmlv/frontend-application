@@ -6,7 +6,7 @@ const webpack = require( 'webpack' ),
    MiniCssExtractPlugin = require( 'mini-css-extract-plugin' ),
    ROOT = path.resolve( `${ __dirname }/..` );
 
-if( ! fs.existsSync( `${ ROOT }/config/server.cfg.js` )) {
+if( ! fs.existsSync( `${ ROOT }/config/server.config.js` )) {
 
    throw new Error( 'Config not found' );
 };
@@ -18,7 +18,7 @@ const {
    HOST,
    PORT,
    NODE_ENV,
-} = require( `${ ROOT }/config/server.cfg` ),
+} = require( `${ ROOT }/config/server.config` ),
    production = NODE_ENV === 'production';
 
 module.exports = {
