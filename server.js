@@ -1,6 +1,7 @@
 'use strict';
 
-const fs = require( 'fs' ),
+const http = require( 'http' ),
+   fs = require( 'fs' ),
    ROOT = __dirname;
 
 if( ! fs.existsSync( `${ ROOT }/config/server.config.js` )){

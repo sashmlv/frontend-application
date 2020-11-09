@@ -15,10 +15,10 @@ const {
 
    SPA,
    SSR,
-   HOST,
-   PORT,
    NODE_ENV,
+   DEV_SERVER,
 } = require( `${ ROOT }/config/server.config` ),
+   { PROXY } = DEV_SERVER,
    production = NODE_ENV === 'production';
 
 module.exports = {
@@ -27,10 +27,14 @@ module.exports = {
    devtool: production ? false: 'source-map',
    devServer: {
 
-      host: HOST,
-      port: PORT,
+      host: DEV_SERVER.HOST,
+      port: DEV_SERVER.PORT,
       // writeToDisk: true,
       historyApiFallback: SPA ? true : { index: `/server/`, },
+      proxy: {
+
+         [ PROXY.SOURCE ]: PROXY.TARGET,
+      },
    },
    resolve: {
 

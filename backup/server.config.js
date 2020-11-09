@@ -11,6 +11,16 @@ const config = {
    HOST: 'localhost',
    PORT: 3000,
    NODE_ENV: process.env.NODE_ENV || 'development',
+   DEV_SERVER: {
+
+      HOST: 'localhost',
+      PORT: 3000,
+      PROXY: {
+
+         SOURCE: '/api',
+         TARGET: 'http://localhost:3001/api',
+      }
+   },
    ESLINT: {
 
       PATHS: [

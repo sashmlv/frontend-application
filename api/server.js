@@ -9,6 +9,7 @@ const {
    jsonServer = require( 'json-server' ),
    server = jsonServer.create(),
    middlewares = jsonServer.defaults({
+
       static: `${ ROOT }/api/public`,
    }),
    db = require( `${ ROOT }/api/db.js` ),
