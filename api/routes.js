@@ -2,7 +2,6 @@
 
 const { Router } = require( 'express' ),
    router = Router(),
-   ch = require( 'chalk' ),
    { NOT_FOUND } = require( './errors' ),
    responses = require( './responses' );
 
