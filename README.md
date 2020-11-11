@@ -7,7 +7,7 @@
 - - ```api.config.js``` and ```responses.js``` in ```api``` directory
 - - ```.editorconfig``` in root of project
 - ```npm install```
-- run **spa** appication: ```npm run spa```
-- run **ssr** appliction: ```npm run ssr```
+- run **spa** application: ```npm run spa```
+- run **ssr** application: ```npm run ssr```
 - run fake api server: ```npm run api```
 - other commands in ```package.json```
