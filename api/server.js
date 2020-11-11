@@ -5,24 +5,25 @@ const {
    ROOT,
    HOST,
    PORT,
-} = require( './api.config' ),
-   jsonServer = require( 'json-server' ),
-   server = jsonServer.create(),
-   middlewares = jsonServer.defaults({
+   DEBUG,
+} = require( './api.config' );
 
-      static: `${ ROOT }/api/public`,
-   }),
-   db = require( `${ ROOT }/api/db.js` ),
-   router = jsonServer.router( db ),
+process.env.DEBUG = DEBUG ? 'express:*' : undefined;
+
+const express = require( 'express' ),
+   app = express(),
+   authenticate = require( './authenticate' ),
    routes = require( './routes' );
 
-server.use( middlewares );
-server.use( jsonServer.bodyParser );
-server.use( routes );
-server.use( router );
-server.listen(
+app.on( 'error', err => console.log( err ));
+
+app.use( express.json());
+app.use( authenticate );
+app.use( routes );
+
+app.listen(
 
    PORT,
    HOST,
-   _=> console.log( `JSON server listen at: ${ HOST }:${ PORT }`),
+   _=> console.log( `api server listen at: ${ HOST }:${ PORT }`),
 );

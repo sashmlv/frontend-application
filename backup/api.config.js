@@ -8,6 +8,7 @@ const config = {
    ROOT,
    HOST: 'localhost',
    PORT: 3001,
+   DEBUG: true,
 };
 
 module.exports = config;

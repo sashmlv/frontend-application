@@ -1,36 +1,43 @@
 'use strict';
 
-const {Router} = require( 'express' ),
+const { Router } = require( 'express' ),
    router = Router(),
-   denied = new Error(),
-   error = new Error();
-
-denied.message = 'Access denied';
-denied.name = 'Access Denied';
-denied.code = 'ACCESS_DENIED';
-denied.status = 403;
-
-error.message = 'An error occurred';
-error.name = 'Error';
-error.code = 'ERROR';
-error.status = 400;
+   ch = require( 'chalk' ),
+   { NOT_FOUND } = require( './errors' ),
+   responses = require( './responses' );
 
 router.use(( req, res, next ) => {
 
-   const token = req.headers.authorization,
-      access = token === 'Bearer: access token' || req.url === '/signin';
+   const key = `${ req.method }:${ req.url }`,
+      data = responses[ key ],
+      response = {
 
-   if( ! access ){
+         status: 200,
+         data,
+         success: true,
+      };
 
-      return next( denied );
+   if( ! data  ) {
+
+      return next( NOT_FOUND );
    }
 
+   res.status( response.status ).json( response );
    return next();
 });
 
 router.use(( err, req, res, next ) => {
 
-   return res.status( err.status || 400 ).jsonp( err );
+   const response = {
+
+      message: err.message || 'Service error',
+      code: err.code || 'SERVICE_ERROR',
+      status: err.status || 500,
+      success: false,
+   };
+
+   res.status( err.status ).json( err );
+   return next();
 });
 
 module.exports = router;
