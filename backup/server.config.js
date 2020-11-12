@@ -1,7 +1,8 @@
 'use strict';
 
 const path = require( 'path' ),
-   ROOT = path.resolve(`${ __dirname }/..`);
+   ROOT = path.resolve(`${ __dirname }/..`),
+   NODE_ENV = process.env.NODE_ENV || 'development';
 
 const config = {
 
@@ -10,16 +11,18 @@ const config = {
    SSR: !! process.env.SSR,
    HOST: 'localhost',
    PORT: 3000,
-   NODE_ENV: process.env.NODE_ENV || 'development',
+   NODE_ENV,
    DEV_SERVER: {
 
       HOST: 'localhost',
       PORT: 3000,
-      PROXY: {
+   },
+   PROXY: {
 
-         SOURCE: '/api',
-         TARGET: 'http://localhost:3001/api',
-      }
+      SOURCE: '/api',
+      HOST: 'localhost',
+      PORT: 3001,
+      PROTOCOL: NODE_ENV === 'production' ? 'https' : 'http',
    },
    ESLINT: {
 
@@ -31,7 +34,7 @@ const config = {
       ],
       OPTIONS: {
 
-         extensions: [ '.js', '.svelte', ]
+         extensions: [ '.js', '.svelte', ],
       }
    }
 };
