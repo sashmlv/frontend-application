@@ -23,6 +23,7 @@ const config = {
       HOST: 'localhost',
       PORT: 3001,
       PROTOCOL: NODE_ENV === 'production' ? 'https' : 'http',
+      ENABLED: true,
    },
    ESLINT: {
 

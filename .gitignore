@@ -2,7 +2,9 @@
 **/node_modules
 **/package-lock.json
 .editorconfig
+.env
 config/server.config.js
 config/client.config.js
 api/api.config.js
 api/responses.js
+docker/certs

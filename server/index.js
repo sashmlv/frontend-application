@@ -20,6 +20,7 @@ const {
    PROXY,
 } = require( `${ ROOT }/config/server.config` ),
    {
+      ENABLED: P_ENABLED,
       HOST: P_HOST,
       PORT: P_PORT,
       PROTOCOL: P_PROTOCOL,
@@ -49,7 +50,12 @@ const serve = SSR ? `${ ROOT }/dist/client` : SPA ? `${ ROOT }/dist` : undefined
    spaSrr = SSR ? ssrMiddleware : SPA ? spaMiddleware : undefined;
 
 app.use( pino );
-app.use( proxy );
+
+if( P_ENABLED ){
+
+   app.use( proxy );
+}
+
 app.use( '/', express.static( serve ));
 app.get( '*', spaSrr );
 

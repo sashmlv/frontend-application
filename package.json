@@ -14,6 +14,10 @@
     "dev:ssr": "cross-env SSR=1 webpack-dev-server --content-base dist --config ./build/webpack.js",
     "eslint": "node ./build/eslint.js",
     "api": "node ./api/server.js",
+    "proxy:up": "docker-compose -p frontend-proxy -f ./docker/docker-compose.yml up --detach --build",
+    "proxy:down": "docker-compose -p frontend-proxy -f ./docker/docker-compose.yml down",
+    "proxy:start": "docker-compose -p frontend-proxy -f ./docker/docker-compose.yml start",
+    "proxy:stop": "docker-compose -p frontend-proxy -f ./docker/docker-compose.yml stop",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sashmlv",
