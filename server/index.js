@@ -19,12 +19,6 @@ const {
    SSR,
    PROXY,
 } = require( `${ ROOT }/config/server.config` ),
-   {
-      ENABLED: P_ENABLED,
-      HOST: P_HOST,
-      PORT: P_PORT,
-      PROTOCOL: P_PROTOCOL,
-   } = PROXY,
    express = require( 'express' ),
    app = express(),
    server = require( 'http' ).createServer( app ),
@@ -51,7 +45,7 @@ const serve = SSR ? `${ ROOT }/dist/client` : SPA ? `${ ROOT }/dist` : undefined
 
 app.use( pino );
 
-if( P_ENABLED ){
+if( PROXY.ENABLED ){
 
    app.use( proxy );
 }
