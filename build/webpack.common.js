@@ -39,7 +39,7 @@ module.exports = {
       historyApiFallback: SPA ? true : { index: `/server/`, },
       proxy: {
 
-         [ SOURCE ]: `${ PROTOCOL }://${ HOST }:${ PORT }`,
+         '/api': `${ PROTOCOL }://${ HOST }:${ PORT }`,
       },
    },
    resolve: {

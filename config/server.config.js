@@ -17,6 +17,9 @@ for( const key in env ) {
    process.env[ key ] = env[ key ];
 }
 
+env.SPA = process.env.SPA || env.SPA;
+env.SSR = process.env.SSR || env.SSR;
+
 const config = {
 
    NODE_ENV,
@@ -32,7 +35,6 @@ const config = {
    },
    PROXY: { // node proxy
 
-      SOURCE: '/api',
       HOST: env.PROXY_HOST,
       PORT: env.PROXY_PORT,
       PROTOCOL: NODE_ENV === 'production' ? 'https' : 'http',
