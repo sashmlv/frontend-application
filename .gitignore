@@ -1,6 +1,7 @@
 **/dist
 **/node_modules
 **/package-lock.json
+!backup/*
 .editorconfig
 .env
 config/client.config.js

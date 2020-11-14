@@ -5,7 +5,7 @@ const fs = require( 'fs' ),
    ROOT = path.resolve( `${ __dirname }/..` ),
    templateStr = fs.readFileSync( `${ ROOT }/dist/index.html`, 'utf8' );
 
-function spaMiddleware( req, res, next ) {
+function spaMiddleware( req, res, next ){
 
    res.send( templateStr );
 

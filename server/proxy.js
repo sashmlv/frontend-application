@@ -13,9 +13,9 @@ const HTTP = PROTOCOL === 'http' ? require( 'http' ) :
    PROTOCOL === 'https' ? require( 'https' ) :
    undefined;
 
-function proxy( req, res, next ) {
+function proxy( req, res, next ){
 
-   if( req.url.indexOf( '/api' ) === 0 ) {
+   if( req.url.indexOf( '/api' ) === 0 ){
 
       return req.pipe(
 

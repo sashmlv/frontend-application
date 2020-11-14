@@ -20,7 +20,7 @@ parts = parts[ 1 ].split( '<!--HTML-->' );
 const beforeHtml = parts[ 0 ],
    afterHtml = parts[ 1 ];
 
-function ssrMiddleware( req, res, next ) {
+function ssrMiddleware( req, res, next ){
 
    const { head, html, css, } = index.render({
 

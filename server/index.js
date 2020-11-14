@@ -57,7 +57,7 @@ app.use(( err, req, res, next ) => {
 
    log.error( err );
 
-   if( res.headersSent ) {
+   if( res.headersSent ){
 
       return next( err );
    }
