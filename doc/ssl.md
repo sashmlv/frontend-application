@@ -1,4 +1,4 @@
-#### SSL install for localhost:
+#### SSL for localhost:
 
 - ```cd docker/certs```
 - run ```./certs.sh```
