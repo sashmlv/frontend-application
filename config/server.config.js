@@ -24,15 +24,13 @@ const config = {
 
    NODE_ENV,
    DEBUG_EXPRESS: env.DEBUG_EXPRESS,
+   SSL_ENABLED: env.SSL_ENABLED === 'true',
+   SSL_KEY: env.SSL_KEY,
+   SSL_CRT: env.SSL_CRT,
    SPA: env.SPA,
    SSR: env.SSR,
    HOST: env.HOST,
    PORT: env.PORT,
-   DEV_SERVER: {
-
-      HOST: env.DEV_SERVER_HOST,
-      PORT: env.DEV_SERVER_PORT,
-   },
    PROXY: { // node proxy
 
       HOST: env.PROXY_HOST,

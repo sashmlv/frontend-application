@@ -8,6 +8,6 @@ services:
     network_mode: host
     volumes:
       - $PWD/docker/proxy.conf.template:/etc/nginx/templates/proxy.conf.template
-      # - $PWD/docker/certs:/etc/nginx/certs
+      # - $PWD/certs:/etc/nginx/certs
     env_file:
       - .env-docker

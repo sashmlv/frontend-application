@@ -1,6 +1,6 @@
 #### SSL for localhost:
 
-- ```cd docker/certs```
+- ```cd certs```
 - run ```./certs.sh```
 - fix for ssl certificates:
 - - ```docker/proxy.conf.template```

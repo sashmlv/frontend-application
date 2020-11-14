@@ -1,11 +1,12 @@
 **/dist
 **/node_modules
 **/package-lock.json
+certs/*
+!certs/certs.sh
 !backup/*
 .editorconfig
 .env
 config/client.config.js
 api/api.config.js
 api/responses.js
-docker/certs
 docker/.env-docker

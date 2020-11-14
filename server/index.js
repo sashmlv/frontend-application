@@ -18,15 +18,23 @@ const {
    SPA_HASHBANG,
    SSR,
    PROXY,
+   SSL_ENABLED,
+   SSL_KEY,
+   SSL_CRT,
 } = require( `${ ROOT }/config/server.config` ),
    express = require( 'express' ),
    app = express(),
-   server = require( 'http' ).createServer( app ),
    log = require( 'pino' )(),
    pino = require( 'express-pino-logger' )(),
    proxy = require( './proxy' ),
    spaMiddleware = SPA && require( './spa.middleware' ),
    ssrMiddleware = SSR && require( './ssr.middleware' );
+
+const server = NODE_ENV === 'production' || SSL_ENABLED ? require( 'https' ).createServer({
+
+      key: fs.readFileSync( `${ ROOT }/certs/${ SSL_KEY }` ),
+      cert: fs.readFileSync( `${ ROOT }/certs/${ SSL_CRT }` ),
+   }, app ) : require( 'http' ).createServer( app );
 
 server.on( 'error', err => log.error( err ));
 
