@@ -35,7 +35,7 @@ const config = {
 
       HOST: env.PROXY_HOST,
       PORT: env.PROXY_PORT,
-      PROTOCOL: NODE_ENV === 'production' ? 'https' : 'http',
+      SSL: NODE_ENV === 'production' || env.PROXY_SSL === 'true',
       ENABLED: env.PROXY_ENABLED === 'true',
    },
    ESLINT: {

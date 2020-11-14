@@ -6,12 +6,10 @@ const path = require( 'path' ),
    {
       HOST,
       PORT,
-      PROTOCOL,
+      SSL,
    } = PROXY;
 
-const HTTP = PROTOCOL === 'http' ? require( 'http' ) :
-   PROTOCOL === 'https' ? require( 'https' ) :
-   undefined;
+const HTTP = SSL ? require( 'https' ) : require( 'http' );
 
 function proxy( req, res, next ){
 
