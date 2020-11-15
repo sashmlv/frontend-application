@@ -20,7 +20,7 @@
    router( '/signin', () => ( component = Signin ));
    router( '/about', () => ( component = About ));
 
-   if( spa ) {
+   if( spa ){
 
       router.start({ hashbang: spa && spaHashbang });
    }

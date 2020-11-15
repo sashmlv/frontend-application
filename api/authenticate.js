@@ -5,7 +5,8 @@ const { DENIED } = require( './errors' );
 function authenticate( req, res, next ) {
 
    const token = req.headers.authorization,
-      access = token === 'Bearer: access token' || req.url === '/api/signin';
+      { session } = req.cookies,
+      access = session === 'refresh token' || req.url === '/api/signin';
 
    if( access ) {
 

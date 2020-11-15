@@ -8,13 +8,22 @@ const { Router } = require( 'express' ),
 router.use(( req, res, next ) => {
 
    const key = `${ req.method }:${ req.url }`,
-      data = responses[ key ],
-      response = {
+      data = responses[ key ];
 
-         status: 200,
-         data,
-         success: true,
-      };
+   if( data.headers ){
+
+      for( const key in data.headers ){
+
+         res.set( key, data.headers[ key ]);
+      }
+   }
+
+   const response = {
+
+      status: 200,
+      data: data.body || data,
+      success: true,
+   };
 
    if( ! data  ) {
 
@@ -22,20 +31,6 @@ router.use(( req, res, next ) => {
    }
 
    res.status( response.status ).json( response );
-   return next();
-});
-
-router.use(( err, req, res, next ) => {
-
-   const response = {
-
-      message: err.message || 'Service error',
-      code: err.code || 'SERVICE_ERROR',
-      status: err.status || 500,
-      success: false,
-   };
-
-   res.status( err.status ).json( err );
    return next();
 });
 
