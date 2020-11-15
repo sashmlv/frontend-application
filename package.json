@@ -1,7 +1,7 @@
 {
-  "name": "frontend-appapplication",
+  "name": "frontend-server",
   "version": "0.0.1",
-  "description": "The frontend appapplication",
+  "description": "The frontend server",
   "main": "index.js",
   "scripts": {
     "build:spa": "cross-env SPA=1 webpack --config ./build/webpack.js",
