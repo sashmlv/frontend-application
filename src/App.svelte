@@ -3,6 +3,7 @@
    import Home from './components/home';
    import Menu from './components/menu';
    import Signin from './components/signin';
+   import Users from './components/users';
    import About from './components/about';
    import Router from './libs/router';
    import { spa, ssr, spaHashbang, path, } from './stores';
@@ -18,6 +19,7 @@
    });
    router( '/',  () => ( component = Home ));
    router( '/signin', () => ( component = Signin ));
+   router( '/users', () => ( component = Users ));
    router( '/about', () => ( component = About ));
 
    if( spa ){

@@ -31,6 +31,9 @@
                         <a href='/signin' class='nav-link {pathname === "/signin" ? "active" : ""}'>Signin</a>
                      </li>
                      <li class='nav-item'>
+                        <a href='/users' class='nav-link {pathname === "/users" ? "active" : ""}'>Users</a>
+                     </li>
+                     <li class='nav-item'>
                         <a href='/about' class='nav-link {pathname === "/about" ? "active" : ""}'>About</a>
                      </li>
                   </ul>

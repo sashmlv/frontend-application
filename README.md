@@ -1,4 +1,4 @@
-### The frontend application.
+### The frontend server.
 
 #### Install:
 - copy files from ```backup``` directory:
