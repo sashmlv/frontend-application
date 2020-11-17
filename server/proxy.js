@@ -9,7 +9,7 @@ const path = require( 'path' ),
       SSL,
    } = PROXY;
 
-const HTTP = SSL ? require( 'https' ) : require( 'http' );
+const http = SSL ? require( 'https' ) : require( 'http' );
 
 function proxy( req, res, next ){
 
@@ -17,7 +17,7 @@ function proxy( req, res, next ){
 
       return req.pipe(
 
-         HTTP.request(
+         http.request(
             {
                host: HOST,
                port: PORT,

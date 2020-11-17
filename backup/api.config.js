@@ -7,7 +7,7 @@ const config = {
 
    ROOT,
    HOST: 'localhost',
-   PORT: 3001,
+   PORT: 3301,
    DEBUG: true,
 };
 
