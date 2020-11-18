@@ -33,6 +33,7 @@
     "eslint-plugin-svelte3": "^2.7.3",
     "mini-css-extract-plugin": "^1.3.0",
     "page": "^1.11.6",
+    "pino-pretty": "^4.3.0",
     "remove-files-webpack-plugin": "^1.4.4",
     "svelte": "^3.29.4",
     "svelte-loader": "^2.13.6",

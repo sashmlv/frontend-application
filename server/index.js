@@ -22,10 +22,18 @@ const {
    SSL_KEY,
    SSL_CRT,
 } = require( `${ ROOT }/config/server.config` ),
+   pinoOpts = NODE_ENV !== 'production' ?  {
+
+      prettyPrint: {
+
+         colorize: true,
+         errorProps: '*',
+      }
+   } : {},
    express = require( 'express' ),
    app = express(),
-   log = require( 'pino' )(),
-   pino = require( 'express-pino-logger' )(),
+   log = require( 'pino' )( pinoOpts ),
+   pino = require( 'express-pino-logger' )( pinoOpts ),
    proxy = require( './proxy' ),
    spaMiddleware = SPA && require( './spa.middleware' ),
    ssrMiddleware = SSR && require( './ssr.middleware' );

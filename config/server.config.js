@@ -19,6 +19,7 @@ for( const key in env ) {
 
 env.SPA = process.env.SPA || env.SPA;
 env.SSR = process.env.SSR || env.SSR;
+process.env.DEBUG = env.DEBUG_EXPRESS;
 
 const config = {
 
